@@ -49,7 +49,7 @@ public static class ArrayProblemsTests
     }
 
     public static IEnumerable<int> PseudoRandom()
-        => Generate(1337, x => x ^ (x >> 3) + (x << 29));
+        => Generate(1336, x => x ^ (x >> 3) + (x << 29));
 
     public static int[] SomeRandomInts
         = PseudoRandom().Take(5).ToArray();
@@ -114,7 +114,7 @@ public static class ArrayProblemsTests
     {
         if (input.Length < 1)
         {
-            Assert.Throws<Exception>(() => ArrayProblems.FirstElement(input));
+            Assert.Throws<IndexOutOfRangeException>(() => ArrayProblems.FirstElement(input));
         }
         else
         {
@@ -128,7 +128,7 @@ public static class ArrayProblemsTests
     {
         if (input.Length < 1)
         {
-            Assert.Throws<Exception>(() => ArrayProblems.LastElement(input));
+            Assert.Throws<IndexOutOfRangeException>(() => ArrayProblems.LastElement(input));
         }
         else
         {
@@ -142,7 +142,7 @@ public static class ArrayProblemsTests
     {
         if (input.Length < 1)
         {
-            Assert.Throws<Exception>(() => ArrayProblems.MiddleElement(input));
+            Assert.Throws<IndexOutOfRangeException>(() => ArrayProblems.MiddleElement(input));
         }
         else
         {
@@ -166,7 +166,7 @@ public static class ArrayProblemsTests
     {
         if (input.Length < 1)
         {
-            Assert.Throws<Exception>(() => ArrayProblems.Min(input, (a,b) => b - a));
+            Assert.Throws<IndexOutOfRangeException>(() => ArrayProblems.Min(input, (a,b) => b - a));
         }
         else
         {
@@ -181,7 +181,7 @@ public static class ArrayProblemsTests
     {
         if (input.Length < 1)
         {
-            Assert.Throws<Exception>(() => ArrayProblems.Max(input, (a, b) => b - a));
+            Assert.Throws<IndexOutOfRangeException>(() => ArrayProblems.Max(input, (a, b) => b - a));
         }
         else
         {

@@ -6,7 +6,7 @@ public static class ArrayProblemsTests
     public static int[] EmptyArray 
         = Array.Empty<int>();
     
-    public static int[] ArrayOfOne 
+    public static int[] ArrayOfOne
         = { 1 };
 
     public static int[] TwoOnes

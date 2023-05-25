@@ -4,7 +4,27 @@
     {
         public static void MySort1(int[] array)
         {
-            throw new NotImplementedException();
+            //write an algorithm to sort smth dynamic arrays allowed. no Sort or OrderBy or any library functions
+
+            var stack = 0;
+            while (stack < array.Length - 1)
+            {
+                stack = 0;
+                for (int i = 0; i < array.Length - 1; i += 2)
+                {
+                    if (i + 1 < array.Length)
+                    {
+                        if (array[i] > array[i + 1])
+                        {
+                            ArrayProblems.Swap(array, i, i + 1);
+                        }
+                        else
+                        {
+                            stack++;
+                        }
+                    }
+                }
+            }
         }
 
         public static void MySort2(int[] array)

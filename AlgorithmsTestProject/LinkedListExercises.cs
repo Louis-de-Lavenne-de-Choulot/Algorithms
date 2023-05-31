@@ -11,7 +11,7 @@ namespace AlgorithmsTestProject
 
         public static void Prepend<T>(this IList<T> self, T x)
         {
-            throw new NotImplementedException();
+            self.Insert(self.GetIterator(), x);
         }
 
         public static IIterator<T> GetLastIterator<T>(this IList<T> self)
@@ -29,17 +29,20 @@ namespace AlgorithmsTestProject
 
         public static T GetAt<T>(this IList<T> self, int index)
         {
+            var i = 0; 
             var iter = self.GetIterator();
-            for (var i = 0; iter.HasValue() && i < index; i++)
+            while (iter.HasValue() && i < index)
+            {
                 iter = iter.GetNext();
+                i += 1;
+            }
+
             return iter.GetElement();
         }
 
         public static void SetAt<T>(this IList<T> self, int index, T element)
         {
-            var iter = self.GetIterator();
-            while (iter.HasValue() && index > 0)
-                iter = iter.GetNext();
+            throw new NotImplementedException();
         }
 
         public static void Swap<T>(this IList<T> self, IIterator<T> a, IIterator<T> b)
@@ -50,11 +53,14 @@ namespace AlgorithmsTestProject
         public static IList<T> Reverse<T>()
         {
             throw new NotImplementedException();
+
         }
 
-        public static IEnumerable<T> Enumerate<T>(this IList<T> self)
+        public static IEnumerable<T> Enumerate<T>(this ISequence<T> self)
         {
-            for(var iter = self.GetIterator(); iter.HasValue(); iter.GetNext())
+            for (var iter = self.GetIterator(); 
+                 iter.HasValue(); 
+                 iter = iter.GetNext())
             {
                 yield return iter.GetElement();
             }

@@ -10,6 +10,7 @@ namespace AlgorithmsTestProject
     {
         public static void TestCount()
         {
+
         }
 
         public static void TestPrepend()
@@ -36,8 +37,12 @@ namespace AlgorithmsTestProject
         {
         }
 
-        public static void TestEnumerate()
+        public static void TestEnumerate<T> (this LinkedList<T> list)
         {
+            for(var iter = list.GetIterator(); iter.HasValue(); iter.GetNext())
+            {
+                yield return iter.GetElement();
+            }
         }
     }
 }

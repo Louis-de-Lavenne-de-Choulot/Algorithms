@@ -14,19 +14,32 @@ namespace AlgorithmsTestProject
             throw new NotImplementedException();
         }
 
+        public static IIterator<T> GetLastIterator<T>(this IList<T> self)
+        {
+            var iter = self.GetIterator();
+            while (iter.HasValue())
+                iter = iter.GetNext();
+            return iter;
+        }
+
         public static void Append<T>(this IList<T> self, T x)
         {
-            throw new NotImplementedException();
+            self.Insert(self.GetLastIterator(), x);
         }
 
         public static T GetAt<T>(this IList<T> self, int index)
         {
-            throw new NotImplementedException();
+            var iter = self.GetIterator();
+            for (var i = 0; iter.HasValue() && i < index; i++)
+                iter = iter.GetNext();
+            return iter.GetElement();
         }
 
         public static void SetAt<T>(this IList<T> self, int index, T element)
         {
-            throw new NotImplementedException();
+            var iter = self.GetIterator();
+            while (iter.HasValue() && index > 0)
+                iter = iter.GetNext();
         }
 
         public static void Swap<T>(this IList<T> self, IIterator<T> a, IIterator<T> b)
@@ -41,9 +54,7 @@ namespace AlgorithmsTestProject
 
         public static IEnumerable<T> Enumerate<T>(this IList<T> self)
         {
-            for (var iter = self.GetIterator(); 
-                 iter.HasValue(); 
-                 iter = iter.GetNext())
+            for(var iter = self.GetIterator(); iter.HasValue(); iter.GetNext())
             {
                 yield return iter.GetElement();
             }
